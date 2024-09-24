@@ -1,0 +1,14 @@
+.parent {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 20px;
+}
+.bottoni {
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    
+}

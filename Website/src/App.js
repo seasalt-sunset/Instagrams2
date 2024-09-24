@@ -1,17 +1,31 @@
 //import logo from './logo.svg';
-import './App.css';
 
-import Login from "./pages/Login";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate
+} from"react-router-dom";
+import './App.css';
+import {useState} from "react";
+import Entry from './pages/Entry';
+import Home from "./pages/Home";
 
 function App() {
+
+  const [login, setLogin] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
+  <Router>
+    <Routes>
+      <Route path="entry" element={<Entry />}></Route>
+      <Route path="/home" element={<Home />} />
+      <Route path="*" element= {<Navigate to={login ? "/Home" : "/Entry"} />} />
 
-    < Login />
-
-      </header>
-    </div>
+    
+    </Routes>
+  </Router>
+    
   );
 }
 

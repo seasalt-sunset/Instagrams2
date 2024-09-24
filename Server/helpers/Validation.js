@@ -12,6 +12,7 @@ const Validation = {
         return input.match(usernameRegex)
     },
     isValidPassword(input) {
+        console.log("Input", input, input.match(passwordRegex))
         return input.match(passwordRegex)
     }
 
