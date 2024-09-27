@@ -1,12 +1,14 @@
-import React from 'react';
+import React,  {useContext} from 'react';
 import '../../styles/SignUp.css';
 import axios from "axios";
 import Validation from "../../services/Validation";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../services/AuthContext';
 
 function Login(props) {
 
   const navigate = useNavigate();
+  const {setLogin} = useContext(AuthContext);
 
   async function onSignUp(e) {
 
@@ -22,7 +24,7 @@ function Login(props) {
       return;
     }
 
-    let res=await axios.post("http://localhost:5555/users",
+    let res=await axios.post("http://localhost:5555/users/login",
       {
             ...(Validation.isEmail(e.target[0].value) ? {email: e.target[0].value} :{username: e.target[0].value}),
             password: e.target[1].value
@@ -33,9 +35,13 @@ function Login(props) {
 
     if(res?.data?.error){
       console.log("error",res.data.error);
-    }else if (res?.data?.login === true) (
-      navigate("/Home")
-    )
+    }else if (res?.data?.status === true) {
+      setLogin({
+        email: res?.data?.email,
+      });
+      localStorage.setItem("login", true);
+      navigate("/home");
+    }
   }
 
 
@@ -43,7 +49,7 @@ function Login(props) {
   return (
     <form className="parent" onSubmit={onSignUp}>
       <h1> BENVENUTO COGLIONE!!!</h1>
-     <img src = "Obama.gif"></img>
+     <img src = "Obama.gif" alt="Obamium"></img>
       <h5>Forza Bari e altre squadre</h5>   
       <input type="text" placeholder='username or email'/>  
       <input type="text"placeholder='password'/> 

@@ -2,6 +2,8 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const { users } = require("../models");
 const Validation = require("../helpers/Validation");
+const { sign } = require("jsonwebtoken")
+require('dotenv').config()
 
 const router = express.Router();
 
@@ -48,14 +50,16 @@ router.post('/', async (request, res) => {
 router.post("/login", async (req, res)=> {
         const {email, username, password} = req.body;
 
+        console.log("Email", email, username, password)
+
         //capire email o password
         if(!email && !username) {
             return res.json ({error: "Invalid Input"});
         }
-        if (email && !email.isValid()) {
+        if (email && !Validation.isValidEmail(email)) {
             return res.json({ error: "Invalid Email"});
         }
-        if (username && !username.isValid) {
+        if (username && !Validation.isValidUsername(username)) {
             return res.json ({error: "Invalid Username"})
         }
 
@@ -77,7 +81,18 @@ router.post("/login", async (req, res)=> {
             if(!match) {
                 return res.json({error: "Wrong Password"})
             }
-            return res.json({login:true});
+            const authToken = sign (
+                {
+                    email: user.email,
+                    status: true,
+                }
+                , process.env.AUTH_SECRET)
+
+                return res.json({
+                    authToken: authToken,
+                    email: user.email,
+                    status:true
+                });
         })
     }
 )

@@ -1,0 +1,24 @@
+.Home{
+   background-color: aqua; 
+}
+
+.Homepage {
+    background-color: red;
+    display: block;
+    align-items: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Bottone {
+    display: block;
+    background-color: red;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+#SBORRANUDA {
+    background-color: blue;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
