@@ -1,24 +1,49 @@
-.Home{
-   background-color: aqua; 
+*{
+    
+    background-color: rgb(250, 115, 115);
 }
 
+
+
 .Homepage {
-    background-color: red;
     display: block;
     align-items: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
 }
 
 .Bottone {
     display: block;
-    background-color: red;
+    background-color: green;
 }
 
 h1 {
     font-size: 40px;
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: block;
+    border-style: dashed;
+    border-color: rgb(201, 75, 75);
+    margin-left: 35%;
+    margin-right: 35%;
+    border-radius: 3mm;
+    border-width: 2mm;
 }
 
-#SBORRANUDA {
-    background-color: blue;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.loggedIn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poster {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    
+}
+
+#createPost {
+    font-style: oblique;
 }

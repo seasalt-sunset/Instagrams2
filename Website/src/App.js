@@ -8,6 +8,7 @@ import {
 import './App.css';
 import Home from "./pages/Home";
 import Entry from './pages/Entry';
+import axios from "axios";
 import { PrivateRoute } from "./services/PrivateRoute";
 import { AuthContext } from "./services/AuthContext";
 import {useEffect, useState} from "react";
@@ -15,9 +16,31 @@ function App() {
   const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(()=> {
-    setLogin(localStorage.getItem("login"));
-    setLoading(false);
-  },[])
+    if(localStorage.getItem("AuthToken")) {
+      checkAuth();
+    } else {
+      setLoading(false);
+    }
+  }, [])
+
+  async function checkAuth() {
+    console.log("Login", localStorage.getItem("AuthToken"))
+
+    //Server -- E valid token
+    let response = await axios.get("http://localhost:5555/users/auth",
+    {
+      headers: {
+        authToken: localStorage.getItem("AuthToken")
+      }
+    }
+    )
+    if (response?.data?.error) {
+      console.log(response.data.error);
+    } else if(response?.data?.user){
+      setLogin(response?.data?.user)
+    }
+        setLoading(false);
+    }
 
   if(loading) {
     return <></>

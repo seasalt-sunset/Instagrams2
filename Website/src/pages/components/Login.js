@@ -38,8 +38,9 @@ function Login(props) {
     }else if (res?.data?.status === true) {
       setLogin({
         email: res?.data?.email,
+        status: res?.data?.status,
       });
-      localStorage.setItem("login", true);
+      localStorage.setItem("AuthToken", res?.data?.authToken);
       navigate("/home");
     }
   }
