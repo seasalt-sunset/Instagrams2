@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router();
 const {validateToken} = require("../middlewares/Authentication")
-const { posts } = require("../models")
+const { posts, users } = require("../models")
 
 router.post("/", validateToken, async (req, res) =>{
     const {title, description} = req.body;
@@ -14,6 +14,14 @@ router.post("/", validateToken, async (req, res) =>{
 
     return res.json({message: "Post has been CREATED"})
 
+})
+
+router.get ("/", validateToken, async (req, res) =>{
+    let allPosts = await posts.findAll({include: [{
+        model: users,
+        attributes:["username"]
+        }]})
+    return res.json(allPosts)
 })
 
 
