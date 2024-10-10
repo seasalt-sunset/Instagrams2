@@ -6,14 +6,18 @@ import axios from 'axios';
 import '../styles/Home.css';
 import Menu from './components/Menu';
 import Post from './components/Post';
+import { toast } from 'react-toastify';
+import Sorting from '../services/Sorting';
+
 
 function Home() {
-    const {setLogin} =useContext(AuthContext);
+    const {login, setLogin} =useContext(AuthContext);
     const navigate = useNavigate();
     const[posts, setPosts] = useState([]);
+    const[order, setOrder] = useState("oldest");
     
     useEffect ( ()=> {
-;   getAllPosts();
+       getAllPosts();
 
     },[])
     const getAllPosts = async () => {
@@ -21,15 +25,14 @@ function Home() {
         "http://localhost:5555/posts",
         {headers: {authToken: localStorage.getItem("AuthToken")}}
       )
-      console.log("yoo", response);
-      if (response?.data?.error) {
-        console.log(response.data.error)
-      }else {
-        setPosts(response.data)
-        console.log(response.data)
-      }
-    }
     
+    if(response?.data?.error) {
+      console.log("Error", response.data.error)
+    } else if(response?.data) {
+      setPosts(response.data)
+      Sorting.sortPosts(order, response.data);
+    }
+  }
     const [menu, setMenu] = useState("show");
 
 
@@ -38,6 +41,11 @@ function Home() {
     navigate("/entry")
     setLogin(false)
   }
+    const deletePost=(id) => {
+      setPosts(
+        posts.filter((post) => post.id !==id)
+      )
+    }
 
   return (
     <div className='Home'>
@@ -49,17 +57,36 @@ function Home() {
 
     <div className='Contents'>
       <h1>Home</h1>
+      <div>
+        <button onClick {() => {
+          let orderedPosts = Sorting.sortPosts("newest", [...posts])
+          setPosts(orderedPosts)
+        className="newest"}}>
+        Newest
+        </button>
+        <button onClick={() => {
+          let orderedPosts = Sorting.sortPosts("oldest", [...posts])
+          setPosts(orderedPosts)</button>
+      </div>
       {
         menu === "show"
         ?
-        posts.map((post) => {
+        posts.map((value) => {
           return (
-            <Post post = {post} />
+            <Post post={value} deletePost={deletePost} />
             )
         })
         
         :
-        <CreatePostForm />
+        <CreatePostForm onCreate={(post) => {
+          setPosts([{
+            ...post,
+            user: {
+              username: login.username
+            }
+          }, ...posts])
+          setMenu("show")
+        }}/>
         
       }
 

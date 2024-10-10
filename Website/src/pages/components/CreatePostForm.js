@@ -1,12 +1,13 @@
 import React from 'react'
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
-function CreatePostForm() {
+function CreatePostForm(props) {
     const onsubmit = async (e) => {
         e.preventDefault();
         console.log(e.target[0].value, e.target[1].value)
             
-        await axios.post("http://localhost:5555/posts",
+        let response = await axios.post("http://localhost:5555/posts",
             {
                 title: e.target[0].value,
                 description: e.target[1].value
@@ -17,7 +18,8 @@ function CreatePostForm() {
                 }
             }
         )
-
+            props.onCreate(response?.data);
+            toast.success("Post has been created");
     }
     return (
         <form onSubmit={onsubmit}>

@@ -7,19 +7,21 @@ const { Op } = require ('sequelize')
 router.post("/", validateToken, async (req, res) =>{
     const {title, description} = req.body;
 
-    await posts.create({
+    let post = await posts.create({
         title: title,
         description: description,
         userId: req.user.id,
         status: "active"
     })
 
-    return res.json({message: "Post has been CREATED"})
+    return res.json(post)
 
 })
 
 router.delete("/:id", validateToken, async (req, res) => {
     const {id} = req.params;
+
+    console.log(id)
 
     await posts.update(
         {
@@ -59,7 +61,7 @@ router.get("/:username", validateToken, async (req, res) => {
     return res.json(userPosts)
 })
 
-router.get ("/", validateToken, async (req, res) =>{
+router.get("/", validateToken, async (req, res) =>{
     let allPosts = await posts.findAll({
         where: {
             status: {
