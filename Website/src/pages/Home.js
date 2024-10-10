@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import CreatePostForm from './components/CreatePostForm';
 import axios from 'axios';
 import '../styles/Home.css';
+import Menu from './components/Menu';
+import Post from './components/Post';
 
 function Home() {
-    const {login, setLogin} =useContext(AuthContext);
+    const {setLogin} =useContext(AuthContext);
     const navigate = useNavigate();
     const[posts, setPosts] = useState([]);
     
@@ -28,36 +30,42 @@ function Home() {
       }
     }
     
-    const logout = () => {
-      localStorage.removeItem("AuthToken");
-      navigate("/entry");
-      setLogin(false);
-    }
-  
+    const [menu, setMenu] = useState("show");
+
+
+  const onLogout = () => {
+    localStorage.removeItem("AuthToken")
+    navigate("/entry")
+    setLogin(false)
+  }
+
   return (
     <div className='Home'>
     <div className="Homepage" style={{color: "black"}}>
+      <Menu
+      cambiaMenu={(value) => setMenu(value)}
+      onLogout={onLogout}
+      />
+
+    <div className='Contents'>
       <h1>Home</h1>
-      <CreatePostForm />
-          {posts.map((post) => {
-            return (<div className='singlePost'>
-              <h2 className='postTitle'>{post.title}</h2>
-              <p className='postDescription'>{post.description}</p>
-              <p className='postUsername'>{post.user.username}</p>
-              </div>)
-          })}
-
-      <div className='loggedIn'>
-      <button className='Bottone'
-      type="button"
-      onClick={logout}
-      > Log Out</button>
-      </div>
-
-      <div>
-
+      {
+        menu === "show"
+        ?
+        posts.map((post) => {
+          return (
+            <Post post = {post} />
+            )
+        })
+        
+        :
+        <CreatePostForm />
+        
+      }
 
       </div>
+
+
       </div>
 
 </div>

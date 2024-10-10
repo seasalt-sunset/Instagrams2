@@ -67,18 +67,7 @@ h1 {
 
 }
 
-.singlePost {
-    display: block;
-    margin-left: 25%;
-    margin-right: 25%;
-    background-color: bisque;
-    border-style:ridge;
-    border-color: rgb(128, 20, 20);
-    padding: 4px;
-    margin-bottom: 5mm;
-    margin-top: 5mm;
-    border-radius: 9px;
-}
+
 
 .loggedIn {
     display: flex;
@@ -96,4 +85,8 @@ h1 {
 
 #createPost {
     font-style: oblique;
+}
+
+.Contents {
+    margin-top: 7vh;
 }

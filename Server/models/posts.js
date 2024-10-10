@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             unique: false,
         },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            unique: false
+        }
     })
     
     return posts;  
