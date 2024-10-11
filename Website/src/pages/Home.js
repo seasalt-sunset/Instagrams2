@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import Sorting from '../services/Sorting';
 
 
+
 function Home() {
     const {login, setLogin} =useContext(AuthContext);
     const navigate = useNavigate();
@@ -51,22 +52,23 @@ function Home() {
     <div className='Home'>
     <div className="Homepage" style={{color: "black"}}>
       <Menu
-      cambiaMenu={(value) => setMenu(value)}
+      setMenu={(value) => setMenu(value)}
+      menu={menu}
       onLogout={onLogout}
       />
 
     <div className='Contents'>
       <h1>Home</h1>
       <div>
-        <button onClick {() => {
+        <button onClick = {() => {
           let orderedPosts = Sorting.sortPosts("newest", [...posts])
-          setPosts(orderedPosts)
-        className="newest"}}>
+          setPosts(orderedPosts)}}
+        className="newest">
         Newest
         </button>
         <button onClick={() => {
           let orderedPosts = Sorting.sortPosts("oldest", [...posts])
-          setPosts(orderedPosts)</button>
+          setPosts(orderedPosts)}}>oldest</button>
       </div>
       {
         menu === "show"

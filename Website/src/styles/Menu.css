@@ -10,7 +10,7 @@
     box-sizing: border-box;
     gap: 2vh;
     left:0;
-    top:0;
+    bottom:0;
 }
 
 .start {

@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import Post from './components/Post';
-import '../styles/UserProfile.css'
+import '../styles/UserProfile.css';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile() {
     const {username} = useParams();
     const [posts, setPosts] = useState([])
+    const navigate = useNavigate;
 
 useEffect(() => {
     fetchData();
@@ -40,6 +42,8 @@ useEffect(() => {
             })
             }
         </div>
+    
+    <button onClick={() => navigate(-1)}>Home</button>
     </div>
   )
 }

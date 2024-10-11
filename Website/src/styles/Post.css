@@ -19,20 +19,22 @@
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-style: normal;
     display: block;
+    margin-bottom: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
     background-color: bisque;
     border-radius: 3mm;
     border-width: 2mm;
 }
 
-.postUsername {
-    font-size: 20px;
-    text-align: right;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-style: italic;
-    display: block;
-    margin-right: 2mm;
+.bottoni {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background-color: bisque;
-
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
 }
 
 .singlePost {
@@ -46,4 +48,44 @@
     margin-bottom: 5mm;
     margin-top: 5mm;
     border-radius: 9px;
+}
+
+.postUsername {
+    display: flex;
+    font-size: 20px;
+    text-align: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    border-style:outset;
+    border-color: rgb(231, 207, 177);
+    margin:0;
+    padding: 4px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background-color: bisque;
+
+}
+
+
+
+.delete {
+    display: flex;
+    font-size: 20px;
+    text-align: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    border-style:outset;
+    border-color: rgb(231, 207, 177);
+    padding: 4px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background-color: bisque;
+}
+
+.date {
+    display: block;
+    text-align: right;
+    background-color: bisque;
+    margin-right: 3px;
+    margin-bottom: 5px;
 }
