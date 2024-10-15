@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import Post from './components/Post';
 import '../styles/UserProfile.css';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function UserProfile() {
     const {username} = useParams();
@@ -22,7 +23,7 @@ useEffect(() => {
             }
         }
     )    
-    console.log("RESPONSE",  response?.data)
+    toast.success(response?.data)
 
     setPosts(response?.data)
 

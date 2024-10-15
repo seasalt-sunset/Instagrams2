@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/SignUp.css';
 import axios from "axios";
-
+import { toast } from 'react-toastify';
 function SignUp(props) {
 
  
@@ -20,7 +20,7 @@ function SignUp(props) {
       username: e.target[2].value
 })
   
-  console.log (respose.data)
+  toast.success (respose.data)
   }
 
 

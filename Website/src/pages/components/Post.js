@@ -5,6 +5,7 @@ import axios from 'axios'
 import {toast} from "react-toastify"
 import { useNavigate } from 'react-router-dom'
 import DateService from '../../services/DateService'
+import LikeSection from './LikeSection'
 
 function Post(props){
     const {login} = useContext(AuthContext);
@@ -38,6 +39,7 @@ function Post(props){
             <div className='date'>{DateService.formatDate(props?.post?.createdAt)}</div>
             <div className='bottoni'>
             <button className='delete' onClick={onDelete}>Delete</button>
+            <LikeSection postId={props?.post?.id}/>
             <p className='postUsername' onClick = {() => {
                 navigate("/user/" + username)
             }}>{props?.username ? props?.username : props?.post?.user?.username}</p>

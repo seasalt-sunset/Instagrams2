@@ -19,6 +19,7 @@ import { ToastContainer } from "react-toastify";
 function App() {
   const [login, setLogin] = useState(false);
   const [loading, setLoading] = useState(true);
+  
   useEffect(()=> {
     if(localStorage.getItem("AuthToken")) {
       checkAuth();

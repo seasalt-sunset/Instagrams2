@@ -68,10 +68,15 @@ router.get("/", validateToken, async (req, res) =>{
                 [Op.ne]: "deleted"
             }
         },
-        include: [{
+        include: [
+            {
         model: users,
         attributes:["username"]
-        }]})
+        },
+        {
+            model: postsLikes
+        }
+    ]})
     return res.json(allPosts)
 })
 
