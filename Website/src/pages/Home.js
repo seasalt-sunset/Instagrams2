@@ -26,12 +26,11 @@ function Home() {
         "http://localhost:5555/posts",
         {headers: {authToken: localStorage.getItem("AuthToken")}}
       )
-    
-    if(response?.data?.error) {
-      console.log("Error", response.data.error)
-    } else if(response?.data) {
-      setPosts(response.data)
-      Sorting.sortPosts(order, response.data);
+      if(response?.data?.error) {
+        console.log("Error", response.data.error)
+      } else if(response?.data) {
+        console.log(response.data)
+        setPosts(Sorting.sortPosts(order, response.data))
     }
   }
     const [menu, setMenu] = useState("show");

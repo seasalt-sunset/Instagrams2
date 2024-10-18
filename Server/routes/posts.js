@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router();
 const {validateToken} = require("../middlewares/Authentication")
-const { posts, users } = require("../models")
+const { posts, users, postsLikes } = require("../models")
 const { Op } = require ('sequelize')
 
 router.post("/", validateToken, async (req, res) =>{

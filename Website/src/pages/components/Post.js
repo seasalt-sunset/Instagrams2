@@ -6,10 +6,14 @@ import {toast} from "react-toastify"
 import { useNavigate } from 'react-router-dom'
 import DateService from '../../services/DateService'
 import LikeSection from './LikeSection'
+import CommentSection from './CommentSection'
+import CommentInactive from '../../assets/comments-inactive.svg'
+import CommentActive from '../../assets/comments-active.svg'
 
 function Post(props){
     const {login} = useContext(AuthContext);
     const [username,setUsername] = useState("");
+    const [showComments, setShowComments] = useState(false);
     const navigate = useNavigate();
     useEffect(() =>{
         if(props?.username) {
@@ -39,11 +43,15 @@ function Post(props){
             <div className='date'>{DateService.formatDate(props?.post?.createdAt)}</div>
             <div className='bottoni'>
             <button className='delete' onClick={onDelete}>Delete</button>
-            <LikeSection postId={props?.post?.id}/>
+            <LikeSection likes={props?.post?.postsLikes} postId={props?.post?.id}/>
             <p className='postUsername' onClick = {() => {
                 navigate("/user/" + username)
             }}>{props?.username ? props?.username : props?.post?.user?.username}</p>
+            <button onClick={() => {setShowComments(!showComments)}}>
+                <img src={CommentInactive} alt={'Commenti'} /> 
+            </button>
             </div>
+            {showComments ? <CommentSection postId={props?.post?.id}/> : <> </> }
         </div>
       )
     }
