@@ -29,7 +29,7 @@ function Home() {
       if(response?.data?.error) {
         console.log("Error", response.data.error)
       } else if(response?.data) {
-        console.log(response.data)
+        console.log("lilliccu", response.data)
         setPosts(Sorting.sortPosts(order, response.data))
     }
   }

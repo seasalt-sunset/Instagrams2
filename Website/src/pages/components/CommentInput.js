@@ -4,7 +4,11 @@ import '../../styles/CommentInput.css'
 function commentInput(props) {
     const createComment = async (e) =>{
         e.preventDefault();
-        console.log(e.target[0].value)
+        console.log(e.target[0].value) 
+
+        if(!e.target[0].value)
+            return
+
         let response = await axios.post("http://localhost:5555/postsComments", 
             {
             comment : e.target[0].value,

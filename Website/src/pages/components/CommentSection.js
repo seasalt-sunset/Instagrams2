@@ -6,7 +6,7 @@ function CommentSection(props) {
   return (
     <div>
         <CommentInput postId={props?.postId} />
-        <ShowComments postId={props?.postId}/>
+        <ShowComments postId={props?.postId} comments={props?.comments}/>
     </div>
   )
 }

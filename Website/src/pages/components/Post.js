@@ -49,9 +49,10 @@ function Post(props){
             }}>{props?.username ? props?.username : props?.post?.user?.username}</p>
             <button onClick={() => {setShowComments(!showComments)}}>
                 <img src={CommentInactive} alt={'Commenti'} /> 
+            <p>{props?.post?.postsComments.length}</p>
             </button>
             </div>
-            {showComments ? <CommentSection postId={props?.post?.id}/> : <> </> }
+            {showComments ? <CommentSection postId={props?.post?.id} comments={props?.post?.postsComments}/> : <> </> }
         </div>
       )
     }

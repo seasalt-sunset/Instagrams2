@@ -3,7 +3,6 @@ class DateService {
     static formatDate(date) {
 
         const dateObject = new Date(date);
-        console.log("Date", dateObject);
         
         const day = dateObject.getUTCDate();
         const month = dateObject.getUTCMonth();
